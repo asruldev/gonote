@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"gonote/app/models"
+	"gonote/app/types"
 	"gonote/database"
 
 	"github.com/gofiber/fiber/v2"
@@ -85,7 +86,7 @@ func UpdateNote(c *fiber.Ctx) error {
 	}
 
 	// Store the body containing the updated data and return error if encountered
-	var updateNoteData updateNote
+	var updateNoteData types.UpdateNote
 	err := c.BodyParser(&updateNoteData)
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Review your input", "data": err})
