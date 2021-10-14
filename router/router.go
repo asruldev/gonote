@@ -12,4 +12,6 @@ func SetupRoutes(app *fiber.App) {
 
 	// Setup the Node Routes
 	routes.SetupNoteRoutes(api)
+	routes.SetupUserRoutes(api)
+
 }
