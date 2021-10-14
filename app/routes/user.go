@@ -11,4 +11,6 @@ func SetupUserRoutes(router fiber.Router) {
 	// Register an user
 	user.Post("/register", controllers.RegisterUser)
 	user.Post("/login", controllers.LoginUser)
+	user.Get("/me", controllers.User)
+	user.Post("/logout", controllers.LogoutUser)
 }
