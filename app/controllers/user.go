@@ -1,8 +1,10 @@
 package controllers
 
 import (
+	"fmt"
 	"gonote/app/models"
 	"gonote/database"
+	"os"
 	"strconv"
 	"time"
 
@@ -118,6 +120,39 @@ func LogoutUser(c *fiber.Ctx) error {
 	}
 
 	c.Cookie(&cookie)
+
+	return c.JSON(fiber.Map{
+		"message": "success",
+	})
+}
+
+func ChangeAvatar(c *fiber.Ctx) error {
+	// cookie := c.Cookies("jwt")
+
+	// Get first file from form field "avatar":
+	file, err := c.FormFile("avatar")
+
+	// Check for errors:
+	if err != nil {
+		return c.JSON(fiber.Map{
+			"message": "failed",
+		})
+	}
+
+	// 👷 Save file inside uploads folder under current working directory:
+	c.SaveFile(file, fmt.Sprintf("./uploads/%s", file.Filename))
+	return c.JSON(fiber.Map{
+		"message": "success",
+	})
+}
+
+func RemoveAvatar(c *fiber.Ctx) error {
+	e := os.Remove("./uploads/asrul.jpeg")
+	if e != nil {
+		return c.JSON(fiber.Map{
+			"message": "failed",
+		})
+	}
 
 	return c.JSON(fiber.Map{
 		"message": "success",

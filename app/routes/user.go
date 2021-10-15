@@ -13,4 +13,6 @@ func SetupUserRoutes(router fiber.Router) {
 	user.Post("/login", controllers.LoginUser)
 	user.Get("/me", controllers.User)
 	user.Post("/logout", controllers.LogoutUser)
+	user.Post("/change-avatar", controllers.ChangeAvatar)
+	user.Delete("/remove-avatar", controllers.RemoveAvatar)
 }
