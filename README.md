@@ -10,11 +10,17 @@ go get -u gorm.io/driver/mysql
 go get github.com/google/uuid
 go get golang.org/x/crypto/bcrypt
 go get github.com/dgrijalva/jwt-go
+
+go get -v github.com/swaggo/swag/cmd/swag
+go get -u github.com/arsmn/fiber-swagger/v2
+go get -u github.com/swaggo/swag/cmd/swag
+go mod vendor -v
 ```
 
 Run with nodemon: >
 `nodemon --exec go run main.go --signal SIGTERM`
 
+Run Swagger with `swag init -g main.go --output docs`
 
 ### Example Route
 
