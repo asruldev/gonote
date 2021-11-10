@@ -4,6 +4,7 @@ import (
 	"gonote/app/models"
 	"gonote/app/types"
 	"gonote/database"
+	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
@@ -37,7 +38,7 @@ func GetNotes(c *fiber.Ctx) error {
 	// Else return notes
 	return c.Status(200).JSON(types.JSONResult{
 		Code:    200,
-		Message: "Found " + string(len(notes)) + " datas",
+		Message: "Found " + strconv.Itoa(int(len(notes))) + " datas",
 		Data:    notes,
 	})
 }
