@@ -14,19 +14,19 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 )
 
-// @title Fiber Swagger Example API
-// @version 2.0
-// @description This is a sample server server.
-// @termsOfService http://swagger.io/terms/
+// @title AsrulDev API
+// @version 1.0
+// @description Server api for blog
+// @termsOfService https://asrul.dev/terms/
 
 // @contact.name API Support
-// @contact.url http://www.swagger.io/support
-// @contact.email support@swagger.io
+// @contact.url https://asrul.dev/support
+// @contact.email talkasrul@gmail.com
 
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host localhost:3000
+// @host localhost:5555
 // @BasePath /
 // @schemes http
 func main() {
@@ -48,7 +48,7 @@ func main() {
 	app.Get("/", HealthCheck)
 
 	// Start Server
-	if err := app.Listen(":3000"); err != nil {
+	if err := app.Listen(":5555"); err != nil {
 		log.Fatal(err)
 	}
 }

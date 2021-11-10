@@ -22,6 +22,8 @@ Run with nodemon: >
 
 Run Swagger with `swag init -g main.go --output docs`
 
+https://github.com/swaggo/swag#declarative-comments-format
+
 ### Example Route
 
 ```

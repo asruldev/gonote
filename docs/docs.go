@@ -17,11 +17,11 @@ var doc = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://swagger.io/terms/",
+        "termsOfService": "https://asrul.dev/terms/",
         "contact": {
             "name": "API Support",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
+            "url": "https://asrul.dev/support",
+            "email": "talkasrul@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -55,6 +55,68 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/api/notes": {
+            "get": {
+                "description": "get tall notes.",
+                "consumes": [
+                    "*/*"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Notes"
+                ],
+                "summary": "Show tall notes.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/types.JSONResult"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "types.JSONResult": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {},
+                "message": {
+                    "type": "string"
+                }
+            }
         }
     }
 }`
@@ -70,12 +132,12 @@ type swaggerInfo struct {
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
-	Version:     "2.0",
-	Host:        "localhost:3000",
+	Version:     "1.0",
+	Host:        "localhost:5555",
 	BasePath:    "/",
 	Schemes:     []string{"http"},
-	Title:       "Fiber Swagger Example API",
-	Description: "This is a sample server server.",
+	Title:       "AsrulDev API",
+	Description: "Server api for blog",
 }
 
 type s struct{}

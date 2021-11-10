@@ -1,17 +1,26 @@
 basePath: /
-host: localhost:3000
+definitions:
+  types.JSONResult:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+    type: object
+host: localhost:5555
 info:
   contact:
-    email: support@swagger.io
+    email: talkasrul@gmail.com
     name: API Support
-    url: http://www.swagger.io/support
-  description: This is a sample server server.
+    url: https://asrul.dev/support
+  description: Server api for blog
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  termsOfService: http://swagger.io/terms/
-  title: Fiber Swagger Example API
-  version: "2.0"
+  termsOfService: https://asrul.dev/terms/
+  title: AsrulDev API
+  version: "1.0"
 paths:
   /:
     get:
@@ -29,6 +38,35 @@ paths:
       summary: Show the status of server.
       tags:
       - root
+  /api/notes:
+    get:
+      consumes:
+      - '*/*'
+      description: get tall notes.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/types.JSONResult'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                message:
+                  type: string
+              type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Show tall notes.
+      tags:
+      - Notes
 schemes:
 - http
 swagger: "2.0"

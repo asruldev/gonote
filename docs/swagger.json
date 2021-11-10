@@ -4,21 +4,21 @@
     ],
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server server.",
-        "title": "Fiber Swagger Example API",
-        "termsOfService": "http://swagger.io/terms/",
+        "description": "Server api for blog",
+        "title": "AsrulDev API",
+        "termsOfService": "https://asrul.dev/terms/",
         "contact": {
             "name": "API Support",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
+            "url": "https://asrul.dev/support",
+            "email": "talkasrul@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
-        "version": "2.0"
+        "version": "1.0"
     },
-    "host": "localhost:3000",
+    "host": "localhost:5555",
     "basePath": "/",
     "paths": {
         "/": {
@@ -42,6 +42,68 @@
                             "additionalProperties": true
                         }
                     }
+                }
+            }
+        },
+        "/api/notes": {
+            "get": {
+                "description": "get tall notes.",
+                "consumes": [
+                    "*/*"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Notes"
+                ],
+                "summary": "Show tall notes.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/types.JSONResult"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "types.JSONResult": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {},
+                "message": {
+                    "type": "string"
                 }
             }
         }

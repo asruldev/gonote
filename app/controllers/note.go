@@ -9,6 +9,15 @@ import (
 	"github.com/google/uuid"
 )
 
+// GetNotes godoc
+// @Summary Show tall notes.
+// @Description get tall notes.
+// @Tags Notes
+// @Accept */*
+// @Produce json
+// @Success 200 {object} types.JSONResult{data=string,message=string,code=int}
+// @Failure 404 {object} map[string]interface{}
+// @Router /api/notes [get]
 func GetNotes(c *fiber.Ctx) error {
 	db := database.DB
 	var notes []models.Note
@@ -18,11 +27,19 @@ func GetNotes(c *fiber.Ctx) error {
 
 	// If no note is present return an error
 	if len(notes) == 0 {
-		return c.Status(404).JSON(fiber.Map{"status": "error", "message": "No notes present", "data": nil})
+		return c.Status(404).JSON(types.JSONResult{
+			Code:    404,
+			Message: "No data found",
+			Data:    nil,
+		})
 	}
 
 	// Else return notes
-	return c.JSON(fiber.Map{"status": "success", "message": "Notes Found", "data": notes})
+	return c.Status(200).JSON(types.JSONResult{
+		Code:    200,
+		Message: "Found " + string(len(notes)) + " datas",
+		Data:    notes,
+	})
 }
 
 func CreateNotes(c *fiber.Ctx) error {
